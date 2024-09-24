@@ -20,12 +20,15 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "serviceWorker": true,
+            "ngswConfigPath": "ngsw-config.json"
           },
           "configurations": {
             "production": {
@@ -64,10 +67,11 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "pwa:build:production"
+              "buildTarget": "pwa:build:production"
             },
             "development": {
-              "browserTarget": "pwa:build:development"
+              "buildTarget": "pwa:build:development",
+              "disableHostCheck": true
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "pwa:build"
+            "buildTarget": "pwa:build"
           }
         },
         "test": {
@@ -87,7 +91,8 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "src/styles.css"

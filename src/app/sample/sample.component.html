@@ -1,0 +1,94 @@
+<div class="container-fluid">
+  <div class="row mt-1 mb-1">
+    <!-- <div class="offset-md-9 col-md-3">
+      <app-alert [isAlertVisible]="showAlert" [message]="alertMessage" [alertClass]="alertResponseClass"
+        [responseMessage]="resMessage"></app-alert>
+    </div> -->
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header bg-dark">
+          <h6 class="text-white fw-bold">crud post123</h6>
+        </div>
+        <div class="card-body">
+          <div class="row my-1">
+            <div class="offset-md-8 col-md-3">
+              <input type="text" class="form-control" [(ngModel)]="searchTxt" (input)="onFilter()"
+                placeholder="Search here..">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card">
+                <div class="card-header bg-dark">
+                  <h6 class="text-white fw-bold">Add post</h6>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label>Title</label>
+                      <input type="text" class="form-control" [(ngModel)]="postObj.title" placeholder="Enter title">
+                    </div>
+                    <div class="col-md-6">
+                      <label>Body</label>
+                      <input type="text" class="form-control" [(ngModel)]="postObj.body" placeholder="Enter body">
+                    </div>
+                  </div>
+                  <div class="row mt-4">
+                    <div class="col-md-12 text-center">
+                      <button class="btn btn-danger btn-sm me-3" (click)="onReset()">Reset</button>
+                      <button class="btn btn-success btn-sm" (click)="onSavePost()" *ngIf="postObj.id == 0">Save
+                        <span *ngIf="isApiCallInProgress" class="spinner-border spinner-border-sm"></span>
+                      </button>
+                      <button class="btn btn-warning btn-sm" (click)="onUpdate()" *ngIf="postObj.id != 0">Update
+                        <span *ngIf="isApiCallInProgress" class="spinner-border spinner-border-sm text-dark"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <table class="table table-bordered">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Sr</th>
+                    <th>Title</th>
+                    <th>Body</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngIf="!isTableLoader">
+                    <tr *ngFor="let item of filterPostList; let sr = index">
+                      <td>{{sr+1}}</td>
+                      <td>{{item.title}}</td>
+                      <td>{{item.body}}</td>
+                      <td style="white-space: nowrap;">
+                        <button class="btn btn-warning btn-sm me-2" (click)="onEdit(item)">Edit</button>
+                        <button class="btn btn-danger btn-sm" (click)="onDelete(item.id)">Delete</button>
+                      </td>
+                    </tr>
+                  </ng-container>
+                  <ng-container *ngIf="isTableLoader">
+                    <tr>
+                      <td colspan="4" class="text-center">
+                        <div class="spinner-border text-muted"></div>
+                        <div class="spinner-border text-muted"></div>
+                        <div class="spinner-border text-muted"></div>
+                        <div class="spinner-border text-muted"></div>
+                      </td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
